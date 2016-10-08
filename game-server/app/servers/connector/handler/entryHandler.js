@@ -10,8 +10,8 @@ var Handler = function(app) {
 };
 
 //检测更新
-var new_version = "0.0.5";
-var force_version = "0.0.5";
+var new_version = "0.0.1";
+var force_version = "0.0.1";
 Handler.prototype.checkUpdate = function(msg, session, next) {
     var s_ver_force = force_version.split('.');
     var s_ver = new_version.split('.');
@@ -74,12 +74,13 @@ Handler.prototype.entry = function(msg, session, next) {
     id += 1;
     session.bind(playerId);
     session.set('playerId', playerId);
-    //session.set('playername', msg.name);
+    session.set('username', msg.username);
+    session.set('password', msg.password);
     session.set('areaId', 1);
     session.on('closed', onUserLeave.bind(null, self.app));
     session.pushAll();
     next(null, {code: Code.OK, playerId: playerId});
-  next(null, {code: 200, msg: 'game server is ok.'});
+    console.log( msg.username)
 };
 
 var onUserLeave = function (app, session, reason) {
