@@ -1,0 +1,10 @@
+{
+    "name":"gcldServer",
+    "version":"0.0.1",
+    "private":false,
+    "dependencies":{
+        "pomelo":"1.2.3",
+		"express": "3.4.8"
+    }
+}
+
