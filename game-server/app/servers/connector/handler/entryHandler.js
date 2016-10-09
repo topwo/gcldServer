@@ -77,10 +77,11 @@ Handler.prototype.entry = function(msg, session, next) {
     session.set('username', msg.username);
     session.set('password', msg.password);
     session.set('areaId', 1);
-    session.on('closed', onUserLeave.bind(null, self.app));
+    session.on('closed', onUserLeave.bind(null, this.app));
     session.pushAll();
-    next(null, {code: Code.OK, playerId: playerId});
-    console.log( msg.username)
+    Code.OK.playerId = playerId;
+    next(null, Code.OK);
+    console.log( msg.username);
 };
 
 var onUserLeave = function (app, session, reason) {
